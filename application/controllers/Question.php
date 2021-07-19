@@ -7,13 +7,17 @@ class Question extends CI_Controller
         parent::__construct();
 
         $this->load->model('question_model','qm');
+        $this->load->model('crud_model','crudm');
     }
 
 
     //utk viewkan semua question, list semua question
     public function index()
     {
-        $msg['data']=$this->qm->list_all();
+
+        $table="question";
+
+        $msg['data']=$this->crudm->list_all($table);
 
         $msg['title']="List of all question";
 
@@ -24,7 +28,11 @@ class Question extends CI_Controller
     //utk view spesific question, perlu GET id question
     public function view($id)
     {
-        $msg['data']=$this->qm->view($id);
+
+        $table="question";
+        $table_id="q_id";
+
+        $msg['data']=$this->crudm->view($table,$table_id,$id);
 
         $msg['title']="The subtopic you choose";
 
@@ -37,6 +45,10 @@ class Question extends CI_Controller
     //utk update pastikan GET id question
     public function save($id)
     {
+
+        $table="question";
+        $table_id="q_id";
+
         $p=$this->input->post();
 
         $data=array(
@@ -49,11 +61,11 @@ class Question extends CI_Controller
 
         if($id==0)
         {
-            $msg['alert']=$this->qm->add($data);
+            $msg['alert']=$this->crudm->add($table,$data);
         }
         else
         {
-            $msg['alert']=$this->qm->update($id,$data);
+            $msg['alert']=$this->crudm->update($table,$table_id,$id,$data);
         }
 
         $msg['link_to']='module-page';
@@ -65,7 +77,11 @@ class Question extends CI_Controller
     //utk delete question, GET id question tersebut
     public function delete($id)
     {
-        $msg=$this->qm->delete($id);
+
+        $table="question";
+        $table_id="q_id";
+
+        $msg=$this->crudm->delete($table,$table_id,$id);
 
         echo json_encode($msg);
     }

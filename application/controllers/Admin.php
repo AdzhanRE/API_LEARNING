@@ -7,13 +7,17 @@ class Admin extends CI_Controller
         parent::__construct();
 
         $this->load->model('admin_model','am');
+        $this->load->model('crud_model','crudm');
     }
 
 
     //utk viewkan semua admin, list semua admin
     public function index()
     {
-        $msg['data']=$this->am->list_all();
+
+        $table="admin";
+
+        $msg['data']=$this->crudm->list_all($table);
 
         $msg['title']="List of all admin";
 
@@ -24,7 +28,11 @@ class Admin extends CI_Controller
     //utk view spesific admin, perlu GET id admin
     public function view($id)
     {
-        $msg['data']=$this->am->view($id);
+
+        $table="admin";
+        $table_id="admin_id";
+
+        $msg['data']=$this->crudm->view($table,$table_id,$id);
 
         $msg['title']="The admin you choose";
 
@@ -37,6 +45,10 @@ class Admin extends CI_Controller
     //utk update pastikan GET id admin
     public function save($id)
     {
+
+        $table="admin";
+        $table_id="admin_id";
+
         $p=$this->input->post();
 
         $data=array(
@@ -49,11 +61,11 @@ class Admin extends CI_Controller
 
         if($id==0)
         {
-            $msg['alert']=$this->am->add($data);
+            $msg['alert']=$this->crudm->add($table,$data);
         }
         else
         {
-            $msg['alert']=$this->am->update($id,$data);
+            $msg['alert']=$this->crudm->update($table,$table_id,$id,$data);
         }
 
         $msg['link_to']='login-page';
@@ -65,7 +77,11 @@ class Admin extends CI_Controller
     //utk delete admin, GET id admin tersebut
     public function delete($id)
     {
-        $msg=$this->am->delete($id);
+
+        $table="admin";
+        $table_id="admin_id";
+
+        $msg=$this->crudm->delete($table,$table_id,$id);
 
         echo json_encode($msg);
     }

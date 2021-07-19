@@ -9,7 +9,7 @@ class Crud_model extends CI_Model
 
     public function list_all($table)
     {
-        $q=$this->db->query("SELECT * FROM '$table'");
+        $q=$this->db->query("SELECT * FROM $table");
         $rs=$q->result();
 
         return $rs;
@@ -18,7 +18,7 @@ class Crud_model extends CI_Model
 
     public function view($table,$table_id,$id)
     {
-        $q=$this->db->query("SELECT * FROM '$table' WHERE '$table_id'='$id'");
+        $q=$this->db->query("SELECT * FROM $table WHERE $table_id='$id'");
         $rs=$q->first_row();
 
         return $rs;

@@ -7,13 +7,17 @@ class Module_title extends CI_Controller
         parent::__construct();
 
         $this->load->model('title_model','tm');
+        $this->load->model('crud_model','crudm');
     }
 
 
     //utk viewkan semua title, list semua title
     public function index()
     {
-        $msg['data']=$this->tm->list_all();
+
+        $table="module_title";
+
+        $msg['data']=$this->crudm->list_all($table);
 
         $msg['title']="List of all title";
 
@@ -24,7 +28,11 @@ class Module_title extends CI_Controller
     //utk view spesific title, perlu GET id title
     public function view($id)
     {
-        $msg['data']=$this->tm->view($id);
+
+        $table="module_title";
+        $table_id="mt_id";
+
+        $msg['data']=$this->crudm->view($table,$table_id,$id);
 
         $msg['title']="The title you choose";
 
@@ -37,6 +45,10 @@ class Module_title extends CI_Controller
     //utk update pastikan GET id title
     public function save($id)
     {
+
+        $table="module_title";
+        $table_id="mt_id";
+
         $p=$this->input->post();
 
         $data=array(
@@ -48,11 +60,11 @@ class Module_title extends CI_Controller
 
         if($id==0)
         {
-            $msg['alert']=$this->tm->add($data);
+            $msg['alert']=$this->crudm->add($table,$data);
         }
         else
         {
-            $msg['alert']=$this->tm->update($id,$data);
+            $msg['alert']=$this->crudm->update($table,$table_id,$id,$data);
         }
 
         $msg['link_to']='module-page';
@@ -64,7 +76,11 @@ class Module_title extends CI_Controller
     //utk delete title, GET id title tersebut
     public function delete($id)
     {
-        $msg=$this->tm->delete($id);
+
+        $table="module_title";
+        $table_id="mt_id";
+
+        $msg=$this->crudm->delete($table,$table_id,$id);
 
         echo json_encode($msg);
     }
