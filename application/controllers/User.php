@@ -3,18 +3,24 @@ header("Access-Control-Allow-Origin: *");
 class User extends CI_Controller
 {
 
+    //$table="user";
+    //$table_id="user_id";
+
     public function __construct()
     {
         parent::__construct();
 
         $this->load->model('user_model','um');
+        $this->load->model('crud_model','crudm');
     }
 
 
     //utk viewkan semua user, list semua user
     public function index()
     {
-        $msg['data']=$this->um->list_all();
+        $table="user";
+        
+        $msg['data']=$this->crudm->list_all($table);
 
         $msg['title']="List of all user";
 
@@ -25,7 +31,10 @@ class User extends CI_Controller
     //utk view spesific user, perlu GET id user
     public function view($id)
     {
-        $msg['data']=$this->um->view($id);
+        $table="user";
+        $table_id="user_id";
+
+        $msg['data']=$this->crudm->view($table,$table_id,$id);
 
         $msg['title']="The user you choose";
 
@@ -38,6 +47,9 @@ class User extends CI_Controller
     //utk update pastikan GET id user
     public function save($id)
     {
+        $table="user";
+        $table_id="user_id";
+
         $p=$this->input->post();
 
         $data=array(
@@ -50,11 +62,11 @@ class User extends CI_Controller
 
         if($id==0)
         {
-            $msg['alert']=$this->um->add($data);
+            $msg['alert']=$this->crudm->add($table,$data);
         }
         else
         {
-            $msg['alert']=$this->um->update($id,$data);
+            $msg['alert']=$this->crudm->update($table,$table_id,$id,$data);
         }
 
         $msg['link_to']='login-page';
@@ -66,7 +78,10 @@ class User extends CI_Controller
     //utk delete user, GET id user tersebut
     public function delete($id)
     {
-        $msg=$this->um->delete($id);
+        $table="user";
+        $table_id="user_id";
+
+        $msg=$this->um->delete($table,$table_id,$id);
 
         echo json_encode($msg);
     }

@@ -16,18 +16,18 @@ class Crud_model extends CI_Model
     }
 
 
-    public function view($table,$id)
+    public function view($table,$table_id,$id)
     {
-        $q=$this->db->query("SELECT * FROM '$table' WHERE user_id='$id'");
+        $q=$this->db->query("SELECT * FROM '$table' WHERE '$table_id'='$id'");
         $rs=$q->first_row();
 
         return $rs;
     }
 
 
-    public function add($data)
+    public function add($table,$data)
     {
-        $q=$this->db->insert('user',$data);
+        $q=$this->db->insert($table,$data);
 
         if(!$q)
         {
@@ -45,10 +45,10 @@ class Crud_model extends CI_Model
     }
 
 
-    public function update($id,$data)
+    public function update($table,$table_id,$id,$data)
     {
-        $q=$this->db->where('user_id',$id)
-                    ->update('user',$data);
+        $q=$this->db->where($table_id,$id)
+                    ->update($table,$data);
 
         if(!$q)
         {
@@ -66,10 +66,10 @@ class Crud_model extends CI_Model
     }
 
 
-    public function delete($id)
+    public function delete($table,$table_id,$id)
     {
-        $q=$this->db->where('user_id',$id)
-                    ->delete('user');
+        $q=$this->db->where($table_id,$id)
+                    ->delete($table);
 
         if(!$q)
         {
