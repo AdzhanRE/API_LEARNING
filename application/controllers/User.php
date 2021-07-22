@@ -81,7 +81,7 @@ class User extends CI_Controller
         $table="user";
         $table_id="user_id";
 
-        $msg=$this->um->delete($table,$table_id,$id);
+        $msg=$this->crudm->delete($table,$table_id,$id);
 
         echo json_encode($msg);
     }
