@@ -34,11 +34,11 @@ class Crud_model extends CI_Model
             $error=$this->db->error();
             print_r($error);
 
-            $arr['msg']='';
+            $arr='';
         }
         else
         {
-            $arr['msg']='success';
+            $arr='success';
         }
 
         return $arr;
@@ -55,11 +55,11 @@ class Crud_model extends CI_Model
             $error=$this->db->error();
             print_r($error);
 
-            $arr['msg']='';
+            $arr='';
         }
         else
         {
-            $arr['msg']='success';
+            $arr='success';
         }
 
         return $arr;
@@ -76,11 +76,11 @@ class Crud_model extends CI_Model
             $error=$this->db->error();
             print_r($error);
 
-            $arr['msg']='';
+            $arr='';
         }
         else
         {
-            $arr['msg']='success';
+            $arr='success';
         }
 
         return $arr;
