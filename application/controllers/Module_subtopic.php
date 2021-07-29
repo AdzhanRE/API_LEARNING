@@ -58,7 +58,7 @@ class Module_subtopic extends CI_Controller
             'ms_title'=>$p['ms_title'],
             'ms_content'=>$p['ms_content'],
             'ms_desc'=>$p['ms_desc'],
-            'ms_status'=>$p['ms_status'],
+            'ms_status'=>0,
             'mt_id'=>$p['mt_id']
         );
 

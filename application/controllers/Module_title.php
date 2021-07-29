@@ -57,7 +57,7 @@ class Module_title extends CI_Controller
         $data=array(
             'mt_title'=>$p['mt_title'],
             'mt_desc'=>$p['mt_desc'],
-            'mt_status'=>$p['mt_status'],
+            'mt_status'=>0,
             'admin_id'=>$p['admin_id']
         );
 
