@@ -8,6 +8,7 @@ class Module_title extends CI_Controller
 
         $this->load->model('title_model','tm');
         $this->load->model('crud_model','crudm');
+        $this->load->model('array_model','am');
     }
 
 
@@ -18,6 +19,7 @@ class Module_title extends CI_Controller
         $table="module_title";
 
         $msg['data']=$this->crudm->list_all($table);
+        $msg['status']=$this->am->status_module();
 
         $msg['title']="List of all title";
 
@@ -33,6 +35,7 @@ class Module_title extends CI_Controller
         $table_id="mt_id";
 
         $msg['data']=$this->crudm->view($table,$table_id,$id);
+        $msg['status']=$this->am->status_module();
 
         $msg['title']="The title you choose";
 

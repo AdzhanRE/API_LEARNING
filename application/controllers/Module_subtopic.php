@@ -8,6 +8,7 @@ class Module_subtopic extends CI_Controller
 
         $this->load->model('subtopic_model','subm');
         $this->load->model('crud_model','crudm');
+        $this->load->model('array_model','am');
     }
 
 
@@ -18,6 +19,7 @@ class Module_subtopic extends CI_Controller
         $table="module_subtopic";
 
         $msg['data']=$this->crudm->list_all($table);
+        $msg['status']=$this->am->status_module();
 
         $msg['title']="List of all subtopic";
 
@@ -33,6 +35,7 @@ class Module_subtopic extends CI_Controller
         $table_id="ms_id";
 
         $msg['data']=$this->crudm->view($table,$table_id,$id);
+        $msg['status']=$this->am->status_module();
 
         $msg['title']="The subtopic you choose";
 
