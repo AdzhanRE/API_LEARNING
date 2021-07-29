@@ -54,10 +54,19 @@ class Module_title extends CI_Controller
 
         $p=$this->input->post();
 
+        if($id==0)
+        {
+            $status=0;
+        }
+        else
+        {
+            $status=1;
+        }
+
         $data=array(
             'mt_title'=>$p['mt_title'],
             'mt_desc'=>$p['mt_desc'],
-            'mt_status'=>0,
+            'mt_status'=>$status,
             'admin_id'=>$p['admin_id']
         );
 

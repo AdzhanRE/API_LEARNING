@@ -54,11 +54,20 @@ class Module_subtopic extends CI_Controller
 
         $p=$this->input->post();
 
+        if($id==0)
+        {
+            $status=0;
+        }
+        else
+        {
+            $status=1;
+        }
+
         $data=array(
             'ms_title'=>$p['ms_title'],
             'ms_content'=>$p['ms_content'],
             'ms_desc'=>$p['ms_desc'],
-            'ms_status'=>0,
+            'ms_status'=>$status,
             'mt_id'=>$p['mt_id']
         );
 
@@ -84,7 +93,8 @@ class Module_subtopic extends CI_Controller
         $table="module_subtopic";
         $table_id="ms_id";
 
-        $msg=$this->crudm->delete($table,$table_id,$id);
+        //$msg=$this->crudm->delete($table,$table_id,$id);
+        
 
         echo json_encode($msg);
     }
