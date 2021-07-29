@@ -14,6 +14,24 @@ class Array_model extends CI_Model
         return $arr;
     }
 
+
+    public function title_arr()
+    {
+        $q=$this->db->query("SELECT * FROM module_title");
+	    $rs=$q->result();
+	    
+	    $arr=array();
+	    if($rs!='')
+	    {
+	        foreach($rs as $r)
+	        {
+	            $arr[$r->mt_id]=$r->mt_title;
+	        }
+	    }
+	    
+	    return $arr;
+    }
+
 }
 
 ?>

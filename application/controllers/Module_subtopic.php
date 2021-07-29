@@ -36,6 +36,23 @@ class Module_subtopic extends CI_Controller
 
         $msg['data']=$this->crudm->view($table,$table_id,$id);
         $msg['status']=$this->am->status_module();
+        $msg['module_title']=$this->am->title_arr();
+
+        $msg['title']="The subtopic you choose";
+
+        echo json_encode($msg);
+    }
+
+
+    // ye akn amik sume subtopic yg ade same title
+    public function view_all_topic($mt_id)
+    {
+        $table="module_subtopic";
+        $table_id="mt_id";// yg nk dicari
+
+        $msg['data']=$this->subm->view_all_topic($table,$table_id,$mt_id);
+        $msg['status']=$this->am->status_module();
+        $msg['module_title']=$this->am->title_arr();
 
         $msg['title']="The subtopic you choose";
 
@@ -94,7 +111,7 @@ class Module_subtopic extends CI_Controller
         $table_id="ms_id";
 
         //$msg=$this->crudm->delete($table,$table_id,$id);
-        
+
 
         echo json_encode($msg);
     }
