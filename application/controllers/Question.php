@@ -25,6 +25,18 @@ class Question extends CI_Controller
     }
 
 
+    //utk view all question yg kait ngn subtopic, perlu GET id question
+    public function view_all($ms_id,$u_id)
+    {
+
+        $msg['data']=$this->qm->view_all($ms_id,$u_id);
+
+        $msg['title']="All question that have the same id";
+
+        echo json_encode($msg);
+    }
+
+
     //utk view spesific question, perlu GET id question
     public function view($id)
     {
