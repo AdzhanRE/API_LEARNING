@@ -37,6 +37,18 @@ class Question extends CI_Controller
     }
 
 
+    //utk view all question by user id
+    public function view_all_q($u_id)
+    {
+
+        $msg['data']=$this->qm->view_all_q($u_id);
+
+        $msg['title']="All question that have the same user id";
+
+        echo json_encode($msg);
+    }
+
+
     //utk view spesific question, perlu GET id question
     public function view($id)
     {
