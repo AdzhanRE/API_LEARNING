@@ -115,6 +115,29 @@ class Module_subtopic extends CI_Controller
 
         echo json_encode($msg);
     }
+
+
+    //search function
+    public function search_subtopic()
+    {
+        $g=$this->input->get();
+
+        //letakkan kat ui sub sebagai bende nk cari
+        $sub=isset($g['sub']) ? $g['sub'] : '';
+
+        $msg['sub']=$sub;
+
+        if($sub!='')//kalu nk search
+        {
+            $msg['data']=$this->subm->search_subtopic($sub);
+        }
+        else
+        {
+            $msg['data']=$this->subm->all_subtopic();
+        }
+
+        echo json_encode($msg);
+    }
 }
 
 ?>
