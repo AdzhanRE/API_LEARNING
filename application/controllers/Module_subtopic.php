@@ -110,7 +110,7 @@ class Module_subtopic extends CI_Controller
         $table="module_subtopic";
         $table_id="ms_id";
 
-        //$msg=$this->crudm->delete($table,$table_id,$id);
+        $msg=$this->crudm->delete($table,$table_id,$id);
 
 
         echo json_encode($msg);
