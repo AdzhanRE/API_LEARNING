@@ -92,7 +92,7 @@ class Module_title extends CI_Controller
         $table="module_title";
         $table_id="mt_id";
 
-        $msg=$this->crudm->delete($table,$table_id,$id);
+        $msg['alert']=$this->crudm->delete($table,$table_id,$id);
 
         echo json_encode($msg);
     }
