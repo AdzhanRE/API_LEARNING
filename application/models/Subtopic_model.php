@@ -29,6 +29,16 @@ class Subtopic_model extends CI_Model
     }
 
 
+    public function search_subtopic_title($sub,$id)
+    {
+        $q=$this->db->query("SELECT * FROM module_subtopic WHERE mt_id='$id' AND ms_title LIKE '%$sub%'");
+        
+        $rs=$q->result();
+
+        return $rs;
+    }
+
+
     public function all_subtopic()
     {
         $q = $this->db->get('module_subtopic');
