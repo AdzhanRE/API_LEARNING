@@ -156,7 +156,7 @@ class Module_subtopic extends CI_Controller
         }
         else
         {
-            $msg['data']=$this->subm->all_subtopic();
+            $msg['data']=$this->subm->all_subtopic_title($id);
         }
 
         echo json_encode($msg);

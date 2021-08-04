@@ -48,6 +48,16 @@ class Subtopic_model extends CI_Model
         return $rs;
     }
 
+
+    public function all_subtopic_title($id)
+    {
+        $q=$this->db->query("SELECT * FROM module_subtopic WHERE mt_id='$id'");
+
+        $rs=$q->result();
+
+        return $rs;
+    }
+
 }
 
 ?>
