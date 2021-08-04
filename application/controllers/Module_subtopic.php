@@ -28,13 +28,26 @@ class Module_subtopic extends CI_Controller
 
 
     //utk view spesific subtopic, perlu GET id subtopic
-    public function view($id)
+    public function view()
     {
+        $g=$this->input->get();
+
+        $id=isset($g['id']) ? $g['id'] : '';
 
         $table="module_subtopic";
         $table_id="ms_id";
 
-        $msg['data']=$this->crudm->view($table,$table_id,$id);
+        if($id=="")
+        {
+            $msg['data']="Please select the topic";
+        }
+        else
+        {
+            $msg['data']=$this->crudm->view($table,$table_id,$id);
+        }
+
+        $msg['id']=$id;
+        //$msg['data']=$this->crudm->view($table,$table_id,$id);
         $msg['status']=$this->am->status_module();
         $msg['module_title']=$this->am->title_arr();
 
