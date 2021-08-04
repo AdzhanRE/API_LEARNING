@@ -39,7 +39,7 @@ class Module_subtopic extends CI_Controller
 
         if($id=="")
         {
-            $msg['data']="Please select the topic";
+            $msg['data']="";
         }
         else
         {
