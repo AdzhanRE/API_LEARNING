@@ -15,6 +15,14 @@ class User_model extends CI_Model
 
         return $rs;
     }
+
+    public function count_data()
+    {
+        $q=$this->db->query("SELECT COUNT(user_id) FROM user");
+        $rs=$q->result();
+
+        return $rs;
+    }
 }
 
 ?>

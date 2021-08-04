@@ -21,6 +21,7 @@ class User extends CI_Controller
         $table="user";
         
         $msg['data']=$this->crudm->list_all($table);
+        $msg['count']=$this->um->count_data();
 
         $msg['title']="List of all user";
 
